@@ -1,0 +1,60 @@
+<div class="jumbotron text-center">
+  <h1 class="display-4">Inicio de sesión.</h1>
+  <p class="lead">
+    Iniciar sesión como Aspirante.
+  </p>
+</div>
+
+{{#if messages}}
+<div class="container">
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    {{#each messages}}
+    <div class="text-center">
+      {{this}}
+    </div>
+    {{/each}}  
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+</div>
+{{/if}}
+
+<div class="row">
+
+  <div class="col-6 offset-3">
+
+    <form action="/inicio-sesion" method="post">
+
+      <!--cedula-->
+      <div class="form-group row">
+        <div class="col-3">
+          <label class="lead">Cédula</label>
+        </div>
+        <div class="col-9">
+          <input type="text" minlength="8" class="form-control" name="cedula" placeholder="Cédula sin guiones" required="true">
+        </div>
+      </div>
+
+      <!--contraseña-->
+      <div class="form-group row">
+        <div class="col-3">
+          <label class="lead">Contraseña</label>
+        </div>
+        <div class="col-9">
+          <input type="password" minlength="8" class="form-control" name="contrasenia" placeholder="Mínimo ocho caracteres" required="true">
+        </div>
+      </div>
+
+      <!--botones-->
+      <div class="row pb-3">
+        <div class="col-6 offset-3">
+          <button type="submit" class="btn btn-info btn-block">Iniciar como Aspirante</button>
+        </div>
+      </div>
+
+    </form>
+
+  </div>
+
+</div>

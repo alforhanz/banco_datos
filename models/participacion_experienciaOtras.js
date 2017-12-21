@@ -1,17 +1,16 @@
 module.exports = (sequelize, Sequelize) => {
 
-  const ExperienciaProfesional = sequelize.define('experienciasProfesionales', {
+  const Participacion_ExperienciaOtras = sequelize.define('participaciones_experienciasOtras', {
     id: {
       type: Sequelize.INTEGER, allowNull: false, autoIncrement:true, primaryKey: true
     },
     idParticipacion: { type: Sequelize.INTEGER, field: 'id_participacion'},
+    idExperienciaOtras: { type: Sequelize.INTEGER, field:'id_experienciaOtras'},
     idComisionado: {
       type: Sequelize.INTEGER, defaultValue: null, field: 'id_comisionado'
     },
-    numeroCertificacion: { type: Sequelize.STRING(20), field: 'numero_certificacion' },
-    institucion: { type: Sequelize.STRING(100) },
-    cargo: { type: Sequelize.STRING(50) },
-    anio: { type: Sequelize.STRING(4) },
+    numeroCertificacion: { type: Sequelize.STRING(20) },
+    descripcion: { type: Sequelize.STRING(20) },
     conocimiento: { type: Sequelize.FLOAT(2), defaultValue: null },
     afin: { type: Sequelize.FLOAT(2), defaultValue: null },
     cultural: { type: Sequelize.FLOAT(2), defaultValue: null },
@@ -21,6 +20,6 @@ module.exports = (sequelize, Sequelize) => {
     freezeTableName: false
   });
 
-  return ExperienciaProfesional;
+  return Participacion_ExperienciaOtras;
 
 };

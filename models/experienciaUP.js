@@ -1,6 +1,6 @@
 module.exports = (sequelize, Sequelize) => {
 
-  const ExperienciaUP = sequelize.define('experiencias_up', {
+  const ExperienciaUP = sequelize.define('experienciasUp', {
     id: {
       type: Sequelize.INTEGER, allowNull: false, autoIncrement:true, primaryKey: true
     },

@@ -1,17 +1,16 @@
 module.exports = (sequelize, Sequelize) => {
 
-  const Area = sequelize.define('areas', {
+  const Usuario_Departamento = sequelize.define('usuarios_departamentos', {
     id: {
       type: Sequelize.INTEGER, allowNull: false, autoIncrement:true, primaryKey: true
     },
+    idUsuario: { type: Sequelize.INTEGER, field: 'id_usuario'},
     idDepartamento: { type: Sequelize.INTEGER, field: 'id_departamento'},
-    codigo: { type: Sequelize.STRING(20) },
-    nombre: { type: Sequelize.STRING(100) }
   }, {
     timestamps: false,
     freezeTableName: false
   });
 
-  return Area;
+  return Usuario_Departamento;
 
 };

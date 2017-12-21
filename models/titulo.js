@@ -4,7 +4,7 @@ module.exports = (sequelize, Sequelize) => {
     id: {
       type: Sequelize.INTEGER, allowNull: false, autoIncrement:true, primaryKey: true
     },
-    nombre: { type: Sequelize.STRNG(100) }
+    nombre: { type: Sequelize.STRING(100) }
   }, {
     timestamps: false,
     freezeTableName: false

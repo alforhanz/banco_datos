@@ -1,11 +1,12 @@
 module.exports = (sequelize, Sequelize) => {
 
-  const Aspirante = sequelize.define('aspirantes', {
+  const Usuario = sequelize.define('usuarios', {
     id: {
       type: Sequelize.INTEGER, allowNull: false, autoIncrement:true, primaryKey: true
     },
+    tipoUsuario: { type: Sequelize.STRING(20), allowNull: false, field: 'tipo_usuario'},
     cedula: { type: Sequelize.STRING(20), unique: true },
-    contrasenia: { type: Sequelize.STRING(50), allowNull: false },
+    contrasenia: { type: Sequelize.STRING(200), allowNull: false },
     nombres: {type: Sequelize.STRING(50) },
     apellidos: {type: Sequelize.STRING(50) },
     correo: {type: Sequelize.STRING(50) },
@@ -23,6 +24,6 @@ module.exports = (sequelize, Sequelize) => {
     freezeTableName: false
   });
 
-  return Aspirante;
+  return Usuario;
 
 };

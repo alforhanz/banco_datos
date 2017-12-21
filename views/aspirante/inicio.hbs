@@ -1,0 +1,48 @@
+<div class="container">
+
+  {{#if ofertas}}
+
+  <div class="text-center">
+    <h1 class="my-3">Tabla de ofertas</h1>
+  </div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Área de conocimiento</th>
+        <th scope="col">Código</th>
+        <th scope="col">Profesor</th>
+        <th scope="col">Extraordinaria</th>
+        <th scope="col">Acción</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each ofertas}}
+      <tr>
+        <td>
+          {{this.nombreArea}}
+        </td>
+        <td>
+          {{this.codigoArea}}
+        </td>
+        <td>
+          {{this.tipoProfesor}}
+        </td>
+        {{#if this.extraordinaria}}
+        <td>Si</td>
+        {{else}}
+        <td>No</td>
+        {{/if}}
+        <td>
+          <a class="btn btn-info" 
+          href="/aspirante/crear-participacion/{{this.id}}/{{this.idAspirante}}">
+            Seleccionar
+          </a>
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+
+  {{/if}}
+
+</div>

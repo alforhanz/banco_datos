@@ -1,17 +1,13 @@
-module.exports = (sequelize, Sequelize, Participacion, Comisionado) => {
+module.exports = (sequelize, Sequelize) => {
 
-  const Director = EvaluacionProfesor.define('evaluaciones_profesor', {
+  const EvaluacionProfesor = sequelize.define('evaluacionesProfesor', {
     id: {
       type: Sequelize.INTEGER, allowNull: false, autoIncrement:true, primaryKey: true
     },
-    idParticipacion: { type: Sequelize.INTEGER, references: {
-      model: Participacion,
-      key: 'id'
-    }},
-    idComisionado: { type: Sequelize.INTEGER, defaultValue: null, references: {
-      model: Comisionado,
-      key: 'id'
-    }},
+    idParticipacion: { type: Sequelize.INTEGER, field: 'id_participacion'},
+    idComisionado: {
+      type: Sequelize.INTEGER, defaultValue: null, field: 'id_comisionado'
+    },
     numeroCertificacion: { type: Sequelize.STRING(20), field: 'numero_certificacion' },
     descripcion: { type: Sequelize.STRING(50) },
     conocimiento: { type: Sequelize.FLOAT(2), defaultValue: null },

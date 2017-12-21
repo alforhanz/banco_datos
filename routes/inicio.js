@@ -1,37 +1,39 @@
 var express = require('express');
 var router = express.Router();
+var passport = require('passport');
 
 const {Aspirante} = require('../database/sequelize.js');
 
 /* GET página de inicio */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Inicio' });
+  res.render('inicio', { title: 'Inicio' });
 });
 
 /* GET formulario de registro para participantes */
 router.get('/registro-aspirante', function(req, res, next) {
-  res.render('formularios/registro-aspirante');
+  var messages = req.flash('error');
+  res.render('formularios/registro-aspirante', {messages: messages});
 });
 
 /* POST formulario de registro para participantes */
-router.post('/registro-aspirante', function(req, res, next) {
-  let cedula = `${req.body.provincia}${req.body.tipo_cedula}${req.body.libro}${req.body.tomo}`;
-  Aspirante.findOne({ where: {cedula: cedula} }).then(result => {
-    if (result) {
-      res.render('formularios/registro-aspirante', {
-        valError: true,
-        cedula: cedula
-      });
-    } else {
-      console.log('usuario registrado');
-    }
-  });
+router.post('/registro-aspirante', passport.authenticate('registro-aspirante', {
+  successRedirect: '/inicio-sesion',
+  failureRedirect: '/registro-aspirante',
+  failureFlash: true
+}));
+
+/* GET formulario de inicio de sesión */
+router.get('/inicio-sesion', function(req, res, next) {
+  var messages = req.flash('error');
+  res.render('formularios/inicio-sesion', {messages: messages});
 });
 
-/* GET formulario de inicio de sesión para participantes */
-router.get('/inicio-participante', function(req, res, next) {
-  res.render('formularios/inicio-participante');
-});
+/* POST formulario de inicio de sesión */
+router.post('/inicio-sesion', passport.authenticate('inicio-sesion', {
+  successRedirect: '/aspirante/inicio',
+  failureRedirect: '/inicio-sesion',
+  failureFlash: true
+}));
 
 // get /inicio-secretaria
 

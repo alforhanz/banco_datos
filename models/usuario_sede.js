@@ -1,15 +1,16 @@
 module.exports = (sequelize, Sequelize) => {
 
-  const ExperienciaOtras = sequelize.define('experienciasOtras', {
+  const Usuario_Sedes = sequelize.define('usuarios_sedes', {
     id: {
       type: Sequelize.INTEGER, allowNull: false, autoIncrement:true, primaryKey: true
     },
-    nombre: { type: Sequelize.STRING(100) }
+    idUsuario: { type: Sequelize.INTEGER, field: 'id_usuario'},
+    idSedes: { type: Sequelize.INTEGER, field: 'id_sede'},
   }, {
     timestamps: false,
     freezeTableName: false
   });
 
-  return ExperienciaOtras;
+  return Usuario_Sedes;
 
 };

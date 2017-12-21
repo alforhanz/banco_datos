@@ -1,0 +1,93 @@
+<div class="jumbotron text-center">
+  <h1 class="display-4">Registro de solicitud de participación.</h1>
+</div>
+
+<div class="row">
+  <div class="col-5 offset-1">
+    <ul>
+      <li class="lead">
+        Nombre del aspirante: {{info.nombre}}
+      </li>
+      <li class="lead">
+        Cédula del aspirante: {{info.cedula}}
+      </li>
+    </ul>
+  </div>
+  <div class="col-5">
+    <ul>
+      <li class="lead">
+        Tipo de profesor: {{info.tipoProfesor}}
+      </li>
+      <li class="lead">
+        Área de conocimiento: {{info.nombreArea}}
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="row">
+
+  <div class="col-6 offset-3">
+
+    <form action="/aspirante/crear-participacion" method="post">
+
+      <h3 class="my-3">Documentos que acompañan la solicitud.</h3>
+
+      <!--curriculum-->
+      <div class="form-group row">
+        <div class="col-6 offset-3">
+          <label class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" name="curriculum">
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description">Hoja de vida.</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-6 offset-3">
+          <label class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" name="cerFisica">
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description">Cértificado de salud física.</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-6 offset-3">
+          <label class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" name="cerMental">
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description">Cértificado de salud mental.</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-6 offset-3">
+          <label class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" name="otros">
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description">Otros requisitos, si el área en la que participa los exige.</span>
+          </label>
+        </div>
+      </div>
+
+      <input type="hidden" name="idAspirante" value="{{aspirante}}">
+      <input type="hidden" name="idOferta" value="{{oferta}}">
+
+      <!--botones-->
+      <div class="row pb-3">
+        <div class="col-6 offset-3">
+          <button type="submit" class="btn btn-info btn-block">Registrar solicitud</button>
+        </div>
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+<!--<h2></h2>
+<h2></h2>-->

@@ -7,16 +7,24 @@ var bodyParser = require('body-parser');
 var expressValidator = require('express-validator');
 var session = require('express-session');
 var expressHbs = require('express-handlebars');
+var passport = require('passport');
+var flash = require('connect-flash');
 
 var inicio = require('./routes/inicio');
-var usuarios = require('./routes/usuarios');
+var aspirante = require('./routes/aspirante');
 
-const {connection} = require('./database/sequelize.js');
+const {connection} = require('./database/sequelize');
 
 var app = express();
 
+require('./config/passport');
+
 // view engine setup
-app.engine('hbs', expressHbs({ defaultLayout: 'main', extname: '.hbs' }));
+app.engine('hbs', expressHbs({
+  defaultLayout: 'main',
+  extname: '.hbs',
+  partialsDir  : [__dirname + '/views/partials']
+}));
 app.set('view engine', 'hbs');
 
 // uncomment after placing your favicon in /public
@@ -24,13 +32,21 @@ app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(expressValidator());
 app.use(cookieParser());
 app.use(session({ secret: 'hakunamatata', resave: false, saveUninitialized: false }));
-app.use(expressValidator());
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(function(req, res, next) {
+  res.locals.loggedIn = req.isAuthenticated();
+  next();
+});
+
 app.use('/', inicio);
-app.use('/usuarios', usuarios);
+app.use('/aspirante', aspirante);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
